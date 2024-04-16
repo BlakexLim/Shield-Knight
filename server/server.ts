@@ -30,7 +30,21 @@ app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
 app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello, World!' });
+  res.json({ message: 'Howdy, Partner!' });
+});
+
+app.get('/shieldKnight/users', async (req, res, next) => {
+  try {
+    const sql = `
+      select *
+        from users;
+        `;
+    const result = await db.query(sql);
+    const users = result.rows;
+    res.status(200).json(users);
+  } catch (err) {
+    next(err);
+  }
 });
 
 /*
