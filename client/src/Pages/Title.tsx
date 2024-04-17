@@ -2,9 +2,10 @@ import { Link, Outlet } from 'react-router-dom';
 
 export function Title() {
   return (
-    <div className="container flex flex-col items-center m-12 font-serif">
+    // className="container flex flex-col items-center m-12 font-serif"
+    <div>
       <div>
-        <h1 className="text-6xl/snug bg-red-900 rounded-3xl p-1 text-yellow-400">
+        <h1 className="hidden text-6xl/snug bg-red-900 rounded-3xl p-1 text-yellow-400">
           Shield Knight
         </h1>
       </div>
