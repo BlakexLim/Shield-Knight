@@ -1,4 +1,16 @@
-:root {
+@import url(base);
+@import url(components);
+@import url(utilities);
+
+/* @font-face {
+  font-family: 'Ancient';
+  font-style: normal;
+  font-weight: 400;
+  font-display:  swap;
+  src: url(../fonts/ancient-modern-tales-font/AncientModernTales-a7Po.ttf);
+} */
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -69,4 +81,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

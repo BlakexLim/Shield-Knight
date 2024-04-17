@@ -2,23 +2,31 @@ import { Link, Outlet } from 'react-router-dom';
 
 export function Title() {
   return (
-    <div>
+    <div className="container flex flex-col items-center m-12 font-serif">
       <div>
-        <h1>Shield Knight</h1>
+        <h1 className="text-6xl/snug bg-red-900 rounded-3xl p-1">
+          Shield Knight
+        </h1>
       </div>
-      <div>
+      <div className="m-6">
         <Link to="/login">
-          <button>Login</button>
+          <button className="text-2xl bg-yellow-300 rounded-3xl h-10 w-64">
+            Login
+          </button>
         </Link>
       </div>
-      <div>
+      <div className="m-6">
         <Link to="/sign-up">
-          <button>New account</button>
+          <button className="text-2xl bg-yellow-300 rounded-3xl h-10 w-64">
+            New account
+          </button>
         </Link>
       </div>
-      <div>
+      <div className="m-6">
         <Link to="/controls">
-          <button>Guest</button>
+          <button className="text-2xl bg-yellow-300 rounded-3xl h-10 w-64">
+            Guest
+          </button>
         </Link>
       </div>
       <Outlet />

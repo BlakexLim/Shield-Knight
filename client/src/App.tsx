@@ -1,5 +1,5 @@
 // import { LandingPage } from './Pages/LandingPage';
-import './App.css';
+import './index.css';
 import { NewGame } from './Pages/NewGame';
 import { Controls } from './Pages/Controls';
 import { Route, Routes } from 'react-router-dom';
