@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom';
 export function Login() {
   return (
     <>
-      <form>
+      <form action="submit">
         <div>
-          <input>Username</input>
+          <label>
+            Username
+            <input type="text" />
+          </label>
         </div>
         <div>
-          <input>Password</input>
+          <label>
+            Password
+            <input type="text" />
+          </label>
         </div>
         <div>
           <button>Login</button>
