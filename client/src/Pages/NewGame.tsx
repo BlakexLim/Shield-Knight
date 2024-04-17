@@ -1,14 +1,17 @@
+import { Link } from 'react-router-dom';
+
 export function NewGame() {
   return (
     <>
       <div>
-        <h1>Shield Knight</h1>
+        <Link to="/intofire">
+          <button>Continue</button>
+        </Link>
       </div>
       <div>
-        <button>Continue</button>
-      </div>
-      <div>
-        <button>New Game</button>
+        <Link to="/intofire">
+          <button>New Game</button>
+        </Link>
       </div>
     </>
   );

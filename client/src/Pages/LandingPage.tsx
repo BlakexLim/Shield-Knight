@@ -1,21 +1,23 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export function LandingPage() {
   return (
     <>
       <div>
-        <h1>Shield Knight</h1>
+        <Link to="/login">
+          <button>Login</button>
+        </Link>
       </div>
       <div>
-        <Link to="/login">Login</Link>
+        <Link to="/sign-up">
+          <button>New account</button>
+        </Link>
       </div>
       <div>
-        <Link to="/sign-up">New account</Link>
+        <Link to="/controls">
+          <button>Guest</button>
+        </Link>
       </div>
-      <div>
-        <Link to="/controls">Guest</Link>
-      </div>
-      <Outlet />
     </>
   );
 }

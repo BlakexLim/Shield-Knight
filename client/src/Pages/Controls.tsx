@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export function Controls() {
   return (
     <>
@@ -14,7 +16,9 @@ export function Controls() {
         </div>
       </div>
       <div>
-        <button>Start</button>
+        <Link to="/intofire">
+          <button>Start</button>
+        </Link>
       </div>
     </>
   );

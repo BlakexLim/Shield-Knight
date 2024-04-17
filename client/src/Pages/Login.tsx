@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export function Login() {
   return (
     <>
@@ -12,7 +14,9 @@ export function Login() {
           <button>Login</button>
         </div>
         <div>
-          <button>Continue as guest</button>
+          <Link to="/intofire">
+            <button>Continue as guest</button>
+          </Link>
         </div>
       </form>
     </>
