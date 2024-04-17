@@ -1,3 +1,5 @@
+import { Link, Outlet } from 'react-router-dom';
+
 export function LandingPage() {
   return (
     <>
@@ -5,14 +7,15 @@ export function LandingPage() {
         <h1>Shield Knight</h1>
       </div>
       <div>
-        <button>Login</button>
+        <Link to="/login">Login</Link>
       </div>
       <div>
-        <button>New account</button>
+        <Link to="/sign-up">New account</Link>
       </div>
       <div>
-        <button>Guest</button>
+        <Link to="/controls">Guest</Link>
       </div>
+      <Outlet />
     </>
   );
 }
