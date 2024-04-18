@@ -1,6 +1,6 @@
-@import url(base);
-@import url(components);
-@import url(utilities);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* @font-face {
   font-family: 'Ancient';
