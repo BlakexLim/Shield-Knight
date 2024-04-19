@@ -23,7 +23,7 @@ export function Login() {
         </div>
         <div className="p-2">
           <Link to="/newgame">
-            <button className="bg-yellow-300 hover:bg-yellow-500 rounded-2xl w-28 drop-shadow-2xl">
+            <button className="bg-yellow-300 hover:bg-yellow-500 rounded-2xl h-8 w-28 drop-shadow-2xl">
               Login
             </button>
           </Link>
