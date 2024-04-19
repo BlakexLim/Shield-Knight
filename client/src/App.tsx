@@ -1,35 +1,24 @@
-import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+// import { LandingPage } from './Pages/LandingPage';
+import './index.css';
+import { NewGame } from './Pages/NewGame';
+import { Controls } from './Pages/Controls';
+import { Route, Routes } from 'react-router-dom';
+import { NotFound } from './Pages/NotFound';
+import { Login } from './Pages/Login';
+import { SignUp } from './Pages/SignUp';
+import { Game } from './Pages/Game';
+import { Title } from './Pages/Title';
 
 export default function App() {
-  const [serverData, setServerData] = useState('');
-
-  useEffect(() => {
-    async function readServerData() {
-      const resp = await fetch('/api/hello');
-      const data = await resp.json();
-
-      console.log('Data from server:', data);
-
-      setServerData(data.message);
-    }
-
-    readServerData();
-  }, []);
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>{serverData}</h1>
-    </>
+    <Routes>
+      <Route path="/" element={<Title />} />
+      <Route path="newgame" element={<NewGame />} />
+      <Route path="controls" element={<Controls />} />
+      <Route path="login" element={<Login />} />
+      <Route path="sign-up" element={<SignUp />} />
+      <Route path="intofire" element={<Game />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }

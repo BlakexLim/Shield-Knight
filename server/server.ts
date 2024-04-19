@@ -29,8 +29,60 @@ app.use(express.static(reactStaticDir));
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello, World!' });
+app.get('/shieldKnight/users', async (req, res, next) => {
+  try {
+    const sql = `
+      select *
+        from users;
+        `;
+    const result = await db.query(sql);
+    const users = result.rows;
+    res.status(200).json(users);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/shieldKnight/progression', async (req, res, next) => {
+  try {
+    const sql = `
+      select *
+        from progression;
+        `;
+    const result = await db.query(sql);
+    const users = result.rows;
+    res.status(200).json(users);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/shieldKnight/helmets', async (req, res, next) => {
+  try {
+    const sql = `
+      select *
+        from helmets;
+        `;
+    const result = await db.query(sql);
+    const users = result.rows;
+    res.status(200).json(users);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/shieldKnight/shields', async (req, res, next) => {
+  try {
+    const sql = `
+      select *
+        from shields;
+        `;
+    const result = await db.query(sql);
+    const users = result.rows;
+    res.status(200).json(users);
+  } catch (err) {
+    next(err);
+  }
 });
 
 /*
