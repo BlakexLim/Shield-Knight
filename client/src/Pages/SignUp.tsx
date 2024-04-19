@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export function SignUp() {
   return (
-    <>
+    <div className="flex justify-center">
       <form action="submit">
         <div>
           <label>
@@ -24,6 +24,6 @@ export function SignUp() {
           </label>
         </div>
       </form>
-    </>
+    </div>
   );
 }

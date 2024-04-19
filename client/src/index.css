@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: 'Ancient';
-  font-style: normal;
-  font-weight: 400;
-  font-display:  swap;
-  src: url(../fonts/ancient-modern-tales-font/AncientModernTales-a7Po.ttf);
-} */
+@font-face {
+  font-family: AncientModernTales;
+  src: url('/fonts/AncientModernTales-a7Po.ttf'),
+    url('/fonts/misc/AncientModernTales-0df8.woff');
+}
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
