@@ -2,7 +2,7 @@ export function Hero() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={2 * 200}
+      width={1.5 * 200}
       viewBox="0 -0.5 200 200"
       shapeRendering="crispEdges">
       <metadata>

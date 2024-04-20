@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { Hero } from './Hero';
 
 export function Movement() {
-  const [position, setPosition] = useState({ x: 50, y: 50 });
+  const [position, setPosition] = useState({ x: 400, y: 800 });
+  console.log(position);
   // speed is how many pixels the hero will move
-  const speed = 5;
+  const speed = 15;
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
@@ -44,8 +45,12 @@ export function Movement() {
   };
 
   return (
-    <div className={`absolute translate-x-${position} translate-y-${position}`}>
-      <Hero />
+    <div className="h-screen flex items-center justify-center">
+      <div
+        className="absolute"
+        style={{ left: `${position.x}px`, top: `${position.y}px` }}>
+        <Hero />
+      </div>
     </div>
   );
 }
