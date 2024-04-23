@@ -5,7 +5,7 @@ import { Time } from './Time';
 
 export function Dungeon() {
   return (
-    <div className="flex flex-col">
+    <div className="flex-col w-fit h-fit">
       <Time />
       <GameMap />
       <Pause />
