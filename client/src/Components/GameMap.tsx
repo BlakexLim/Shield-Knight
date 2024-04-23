@@ -1,6 +1,8 @@
-import { Movement } from './Movement';
+import { useCallback, useEffect, useState } from 'react';
+import { Hero } from './Hero';
 
 export function GameMap() {
+  const [position, setPosition] = useState({ x: 3, y: 10 });
   const mapDimensions = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -14,7 +16,64 @@ export function GameMap() {
     [0, 1, 0, 0, 0, 0, 1, 0, 0],
     [1, 0, 1, 0, 1, 1, 0, 0, 1],
   ];
-  const currentPosition = [[0], [0]];
+
+  // speed is how many pixels the hero will move
+  const speed = 15;
+
+  const handleKeyPress = useCallback(
+    (e) => {
+      e.preventDefault();
+      let x = position.x;
+      let y = position.y;
+
+      switch (e.keyCode) {
+        // keyCodes for w a s d and arrow keys
+        case 87:
+        case 38:
+          if (position.y > -3) {
+            y = position.y - 1;
+          }
+          if (mapDimensions === []) {
+            y = position.y;
+          }
+          console.log('w');
+          break;
+        case 83:
+        case 40:
+          if (position.y < 41) {
+            y = position.y + 1;
+          }
+          console.log('s');
+          break;
+        case 65:
+        case 37:
+          if (position.x > -5) {
+            x = position.x - 1;
+          }
+          console.log('a');
+          break;
+        case 68:
+        case 39:
+          if (position.x < 27) {
+            x = position.x + 1;
+          }
+          console.log('d');
+          break;
+        default:
+          break;
+      }
+      console.log('newPosition', x, y);
+      setPosition({ x: x, y: y });
+    },
+    [position]
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [handleKeyPress]);
 
   const mountain = (
     <svg
@@ -57,8 +116,8 @@ export function GameMap() {
   const dragon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={4 * 121}
-      viewBox="0 -0.5 121 22"
+      width={4 * 112}
+      viewBox="0 -0.5 112 22"
       shapeRendering="crispEdges">
       <metadata>
         Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj
@@ -95,12 +154,16 @@ export function GameMap() {
           ))}
         </div>
       ))}
-      <Movement playerPosition={currentPosition} />
+      <div className="flex items-center justify-center">
+        <div
+          className="absolute"
+          style={{
+            left: `${position.x * speed}px`,
+            top: `${position.y * speed}px`,
+          }}>
+          <Hero />
+        </div>
+      </div>
     </div>
   );
 }
-
-// function moveOk([x], [y]) {
-//   if (x === 0) x++
-//   else x;
-// };
