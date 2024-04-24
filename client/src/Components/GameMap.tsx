@@ -114,7 +114,7 @@ export function GameMap() {
       xmlns="http://www.w3.org/2000/svg"
       width={5 * 14}
       viewBox="0 -0.5 15 14"
-      shape-rendering="crispEdges">
+      shapeRendering="crispEdges">
       <metadata>
         Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj
       </metadata>
@@ -152,7 +152,7 @@ export function GameMap() {
       xmlns="http://www.w3.org/2000/svg"
       width={5 * 14}
       viewBox="0 -0.5 15 14"
-      shape-rendering="crispEdges">
+      shapeRendering="crispEdges">
       <metadata>
         Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj
       </metadata>
@@ -192,7 +192,7 @@ export function GameMap() {
       xmlns="http://www.w3.org/2000/svg"
       width={45 * 13}
       viewBox="0 -0.5 94 13"
-      shape-rendering="crispEdges">
+      shapeRendering="crispEdges">
       <metadata>
         Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj
       </metadata>
@@ -218,8 +218,8 @@ export function GameMap() {
   }
 
   return (
-    <div className="flex-col relative">
-      {<div className="absolute top-0 left-0 right-0">{dragon}</div>}{' '}
+    <div className="flex flex-col relative">
+      {<div className="absolute">{dragon}</div>}{' '}
       {mapDimensions.map((x, i) => (
         <div className="flex" key={i}>
           {x.map((y, j) => (
