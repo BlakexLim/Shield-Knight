@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Hero } from './Hero';
+import { Victory } from './Victory';
+import { Link } from 'react-router-dom';
 
 const mapDimensions = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -18,6 +20,7 @@ const mapDimensions = [
 
 export function GameMap() {
   const [position, setPosition] = useState({ x: 4, y: 11 });
+  const [open, setOpen] = useState(false);
 
   // speed is how many pixels the hero will move
   const speedX = 70;
@@ -40,6 +43,11 @@ export function GameMap() {
         case 38:
           if (position.y > 0 && checkOk(position.x, position.y - 1)) {
             newY = position.y - 1;
+          }
+          if (newY === 0) {
+            setOpen(true);
+          } else {
+            setOpen(false);
           }
           console.log('w');
           break;
@@ -132,7 +140,7 @@ export function GameMap() {
       width={45 * 13}
       viewBox="0 -0.5 94 13"
       shapeRendering="crispEdges"
-      className="animate-pulse">
+      className="translate-x-8">
       <metadata>
         Made with Pixels to Svg https://codepen.io/shshaw/pen/XbxvNj
       </metadata>
@@ -160,7 +168,7 @@ export function GameMap() {
 
   return (
     <div className="flex flex-col relative">
-      {<div className="absolute">{dragon}</div>}{' '}
+      {<div className="absolute">{dragon}</div>}
       {mapDimensions.map((x, i) => (
         <div className="flex" key={i}>
           {x.map((y, j) => (
@@ -168,6 +176,7 @@ export function GameMap() {
           ))}
         </div>
       ))}
+
       <div className="flex items-center justify-center">
         <div
           className="absolute"
@@ -178,6 +187,19 @@ export function GameMap() {
           <Hero />
         </div>
       </div>
+      <Victory isOpen={open}>
+        <div className="flex flex-col items-center">
+          <h1 className="mt-5 w-3/5 h-1/5 text-center text-5xl tracking-widest text-blue-700 animate-pulse">
+            VICTORY
+          </h1>
+          <div className="flex justify-center items-center text-6xl bg-yellow-500 w-2/5 h-40 rounded-2xl">
+            <p>00:00:00</p>
+          </div>
+          <button className="pt-1 mt-12 w-1/5 rounded-2xl bg-slate-700 text-white tracking-wider">
+            <Link to="/newgame">OK</Link>
+          </button>
+        </div>
+      </Victory>
     </div>
   );
 }
