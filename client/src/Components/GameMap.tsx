@@ -189,13 +189,13 @@ export function GameMap() {
       </div>
       <Victory isOpen={open}>
         <div className="flex flex-col items-center">
-          <h1 className="mt-5 w-3/5 h-1/5 text-center text-5xl tracking-widest text-blue-700 animate-pulse">
+          <h1 className="lg:mt-5 w-3/5 h-1/5 text-center lg:text-5xl md:text-3xl sm:text-lg tracking-widest text-blue-700 animate-pulse">
             VICTORY
           </h1>
-          <div className="flex justify-center items-center text-6xl bg-yellow-500 w-2/5 h-40 rounded-2xl">
+          <div className="flex justify-center items-center lg:text-6xl md:text-4xl sm:text-lg bg-yellow-500 w-2/5 h-40 rounded-2xl">
             <p>00:00:00</p>
           </div>
-          <button className="pt-1 mt-12 w-1/5 rounded-2xl bg-slate-700 text-white tracking-wider">
+          <button className="pt-1 lg:mt-12 w-1/5 rounded-2xl bg-slate-700 text-white tracking-wider">
             <Link to="/newgame">OK</Link>
           </button>
         </div>

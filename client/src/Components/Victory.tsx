@@ -17,7 +17,7 @@ export function Victory({ isOpen, children }: ModalProp) {
   }, [isOpen]);
 
   return (
-    <dialog ref={modal} className="w-2/5 h-2/5 rounded-2xl mt-7">
+    <dialog ref={modal} className="lg:w-2/5 sm:w-4/5 p-2 rounded-2xl lg:mt-7">
       {children}
     </dialog>
   );
