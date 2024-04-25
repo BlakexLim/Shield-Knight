@@ -20,7 +20,7 @@ export function Time({ time, running, onTime }: TimerProp) {
   }, [running, onTime, time]);
   return (
     <div className="flex justify-center text-center">
-      <div className="bg-yellow-300 p-8 animate-pulse ease-linear drop-shadow-2xl">
+      <div className="bg-yellow-300 p-6 rounded-2xl animate-pulse ease-linear drop-shadow-2xl">
         <span>{('0' + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
         <span>{('0' + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
         <span>{('0' + ((time / 10) % 100)).slice(-2)}</span>
