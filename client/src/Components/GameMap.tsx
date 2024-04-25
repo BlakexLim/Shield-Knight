@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Hero } from '../assets/Hero';
-import { Modal } from './Modal';
-import { Link } from 'react-router-dom';
 import { dragon } from '../assets/dragon';
 import { path } from '../assets/path';
 import { mountain } from '../assets/mountain';
+
+type GameProps = {
+  victory: () => void;
+};
 
 const mapDimensions = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -20,9 +22,8 @@ const mapDimensions = [
   [1, 0, 1, 0, 0, 0, 0, 0, 1],
 ];
 
-export function GameMap() {
+export function GameMap({ victory }: GameProps) {
   const [position, setPosition] = useState({ x: 4, y: 10 });
-  const [open, setOpen] = useState(false);
 
   // speed is how many pixels the hero will move
   const speedX = 70;
@@ -47,9 +48,7 @@ export function GameMap() {
             newY = position.y - 1;
           }
           if (newY === 0) {
-            setOpen(true);
-          } else {
-            setOpen(false);
+            victory();
           }
           console.log('w');
           break;
@@ -86,7 +85,7 @@ export function GameMap() {
       console.log('newPosition', newX, newY);
       setPosition({ x: newX, y: newY });
     },
-    [position, checkOk]
+    [position, checkOk, victory]
   );
 
   useEffect(() => {
@@ -123,19 +122,6 @@ export function GameMap() {
           <Hero />
         </div>
       </div>
-      <Modal onClose={() => setOpen(false)} isOpen={open}>
-        <div className="flex flex-col items-center">
-          <h1 className="lg:mt-5 w-3/5 h-1/5 text-center lg:text-5xl md:text-3xl sm:text-lg tracking-widest text-blue-700 animate-pulse">
-            V I C T O R Y
-          </h1>
-          <div className="flex justify-center items-center lg:text-6xl md:text-4xl sm:text-lg bg-yellow-500 w-2/5 h-40 rounded-2xl">
-            <p>00:00:00</p>
-          </div>
-          <button className="pt-1 lg:mt-12 w-1/5 rounded-2xl bg-slate-700 text-white tracking-wider">
-            <Link to="/newgame">OK</Link>
-          </button>
-        </div>
-      </Modal>
     </div>
   );
 }
