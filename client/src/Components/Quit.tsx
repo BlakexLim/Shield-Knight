@@ -28,7 +28,7 @@ export function Quit() {
           Are you sure you want to quit ?
         </p>
         <div className="flex justify-evenly text-center">
-          <div className="">
+          <div>
             <button
               onClick={handleNo}
               className="bg-red-500 hover:bg-red-800 w-20 rounded-2xl">

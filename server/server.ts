@@ -2,6 +2,7 @@
 import 'dotenv/config';
 import express from 'express';
 import pg from 'pg';
+import argon2 from 'argon2';
 import {
   ClientError,
   defaultMiddleware,
@@ -38,6 +39,27 @@ app.get('/shieldKnight/users', async (req, res, next) => {
     const result = await db.query(sql);
     const users = result.rows;
     res.status(200).json(users);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/shieldKnight/users/sign-up', async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      throw new ClientError(400, 'username and password are required');
+    }
+    const sql = `
+      insert into "users" ("username", "hashedPwd")
+        values ($1, $2)
+        returning *;
+      `;
+    const hashedPwd = await argon2.hash(password);
+    const params = [username, hashedPwd];
+    const result = await db.query(sql, params);
+    const [row] = result.rows;
+    res.status(201).json(row);
   } catch (err) {
     next(err);
   }
