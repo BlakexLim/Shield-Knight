@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Hero } from './Hero';
-import { Victory } from './Victory';
+import { Hero } from '../assets/Hero';
+import { Modal } from './Modal';
 import { Link } from 'react-router-dom';
 import { dragon } from '../assets/dragon';
 import { path } from '../assets/path';
@@ -12,17 +12,16 @@ const mapDimensions = [
   [1, 1, 0, 0, 0, 0, 0, 0, 1],
   [0, 0, 0, 1, 1, 0, 1, 0, 0],
   [0, 1, 0, 0, 1, 0, 0, 1, 0],
-  [1, 1, 1, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 1, 1, 1, 0, 1],
+  [1, 0, 1, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 1, 1, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 1, 0, 0, 1, 0, 1, 0],
   [0, 1, 0, 0, 0, 0, 1, 0, 0],
-  [1, 0, 1, 0, 1, 1, 0, 0, 1],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [1, 0, 1, 0, 0, 0, 0, 0, 1],
 ];
 
 export function GameMap() {
-  const [position, setPosition] = useState({ x: 4, y: 11 });
+  const [position, setPosition] = useState({ x: 4, y: 10 });
   const [open, setOpen] = useState(false);
 
   // speed is how many pixels the hero will move
@@ -124,10 +123,10 @@ export function GameMap() {
           <Hero />
         </div>
       </div>
-      <Victory isOpen={open}>
+      <Modal onClose={() => setOpen(false)} isOpen={open}>
         <div className="flex flex-col items-center">
           <h1 className="lg:mt-5 w-3/5 h-1/5 text-center lg:text-5xl md:text-3xl sm:text-lg tracking-widest text-blue-700 animate-pulse">
-            VICTORY
+            V I C T O R Y
           </h1>
           <div className="flex justify-center items-center lg:text-6xl md:text-4xl sm:text-lg bg-yellow-500 w-2/5 h-40 rounded-2xl">
             <p>00:00:00</p>
@@ -136,7 +135,7 @@ export function GameMap() {
             <Link to="/newgame">OK</Link>
           </button>
         </div>
-      </Victory>
+      </Modal>
     </div>
   );
 }
