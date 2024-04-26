@@ -50,7 +50,6 @@ export function GameMap({ victory }: GameProps) {
           if (newY === 0) {
             victory();
           }
-          console.log('w');
           break;
         case 83:
         case 40:
@@ -60,14 +59,12 @@ export function GameMap({ victory }: GameProps) {
           ) {
             newY = position.y + 1;
           }
-          console.log('s');
           break;
         case 65:
         case 37:
           if (position.x > 0 && checkOk(position.x - 1, position.y)) {
             newX = position.x - 1;
           }
-          console.log('a');
           break;
         case 68:
         case 39:
@@ -77,12 +74,10 @@ export function GameMap({ victory }: GameProps) {
           ) {
             newX = position.x + 1;
           }
-          console.log('d');
           break;
         default:
           break;
       }
-      console.log('newPosition', newX, newY);
       setPosition({ x: newX, y: newY });
     },
     [position, checkOk, victory]

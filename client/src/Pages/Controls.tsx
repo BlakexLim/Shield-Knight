@@ -35,7 +35,7 @@ export function Controls() {
                 </p>
               </div>
             </div>
-            <div className="flex justify-center text-center font-sans md:p-2">
+            <div className="flex justify-center text-center font-sans md:p-2 sm:p-1">
               <div className="pr-1">
                 <p className="text-xl bg-black text-white rounded-md w-8 h-8">
                   A
