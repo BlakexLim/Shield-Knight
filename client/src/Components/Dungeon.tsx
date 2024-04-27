@@ -5,12 +5,16 @@ import { Quit } from './Quit';
 import { Time } from './Time';
 import { Modal } from './Modal';
 import { Link } from 'react-router-dom';
+import { Progress, updateProgress } from '../lib/data';
 
 export function Dungeon() {
   const [running, setRunning] = useState(false);
   const [start, setStart] = useState(true);
   const [end, setEnd] = useState(false);
   const [time, setTime] = useState(0);
+  const [progress, setProgress] = useState<Progress>();
+
+  const [error, setError] = useState<unknown>();
 
   function handleReady() {
     if (start === true) {
@@ -19,9 +23,24 @@ export function Dungeon() {
     }
   }
 
-  function handleVictory() {
-    setEnd(true);
-    setRunning(false);
+  async function handleVictory() {
+    try {
+      setEnd(true);
+      setRunning(false);
+      const res = await updateProgress(time);
+      setProgress(res);
+    } catch (error) {
+      setError(error);
+    }
+  }
+
+  if (error) {
+    console.error('Fetch error:', error);
+    return (
+      <div>
+        Error! {error instanceof Error ? error.message : 'Unknown error'}
+      </div>
+    );
   }
 
   return (
@@ -49,6 +68,12 @@ export function Dungeon() {
           </h1>
           <div className="flex justify-center items-center md:text-4xl sm:text-lg bg-neutral-800 w-2/5 h-32 rounded-2xl">
             <Time time={time}></Time>
+            {progress?.isBestTime && (
+              <div className="flex justify-center items-center md:text-4xl sm:text-lg bg-neutral-800 w-2/5 h-32 rounded-2xl">
+                new best time:${progress.bestTime}, prev best time:$
+                {progress.prevBest}
+              </div>
+            )}
           </div>
           <button className="pt-1 lg:mt-12 w-1/5 rounded-2xl bg-slate-700 text-white tracking-wider">
             <Link to="/newgame">OK</Link>
