@@ -16,7 +16,7 @@ export function Dungeon() {
 
   const [error, setError] = useState<unknown>();
 
-  function handleReady() {
+  function handleReady(): void {
     if (start === true) {
       setStart(false);
       setRunning(true);
@@ -48,10 +48,10 @@ export function Dungeon() {
       {/* game start modal */}
       <Modal isOpen={start} onClose={() => setStart(false)}>
         <div className="bg-yellow-500 p-3 rounded-2xl">
-          <div className="flex flex-col justify-center bg-white animate-pulse ease-out rounded-2xl lg:p-12 sm:p-3">
+          <div className="flex flex-col justify-center bg-white rounded-2xl lg:p-12">
             <button
               onClick={handleReady}
-              className="lg:text-5xl sm:text-lg text-blue-500 hover:text-blue-800">
+              className="lg:text-5xl sm:text-lg text-blue-500 hover:text-blue-800 animate-pulse ease-out">
               R e a d y
             </button>
             <p className="text-center text-sm font-sans">

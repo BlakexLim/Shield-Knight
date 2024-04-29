@@ -27,7 +27,7 @@ export function Modal({ isOpen, children, onClose }: ModalProp) {
     <dialog
       ref={modal}
       onKeyDown={handleEsc}
-      className="lg:w-2/5 sm:w-4/5 p-2 rounded-2xl lg:mt-7 bg-zinc-400">
+      className="lg:w-2/5 p-2 rounded-2xl lg:mt-7 bg-zinc-400">
       {children}
     </dialog>
   );

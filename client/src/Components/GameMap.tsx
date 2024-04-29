@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Hero } from '../assets/Hero';
-import { dragon } from '../assets/dragon';
 import { path } from '../assets/path';
 import { mountain } from '../assets/mountain';
+import { Dragon } from './Dragon';
+// import { Bullets } from './Bullets';
 
 type GameProps = {
   victory: () => void;
@@ -24,10 +25,15 @@ const mapDimensions = [
 
 export function GameMap({ victory }: GameProps) {
   const [position, setPosition] = useState({ x: 4, y: 10 });
+  const [bullets, setBullets] = useState({ x: 4, y: 1 });
 
-  // speed is how many pixels the hero will move
+  // move one cell per movement button click
   const speedX = 70;
   const speedY = 65.33;
+
+  const handleBullets = useCallback(() => {
+    setBullets(bullets);
+  }, [bullets]);
 
   const checkOk = useCallback((x: number, y: number) => {
     if (mapDimensions[y][x] === 1) return false;
@@ -39,6 +45,7 @@ export function GameMap({ victory }: GameProps) {
       e.preventDefault();
       let newX = position.x;
       let newY = position.y;
+      handleBullets();
 
       switch (e.keyCode) {
         // keyCodes for w a s d and arrow keys
@@ -80,7 +87,7 @@ export function GameMap({ victory }: GameProps) {
       }
       setPosition({ x: newX, y: newY });
     },
-    [position, checkOk, victory]
+    [position, checkOk, victory, handleBullets]
   );
 
   useEffect(() => {
@@ -98,7 +105,14 @@ export function GameMap({ victory }: GameProps) {
 
   return (
     <div className="flex flex-col relative">
-      {<div className="absolute">{dragon}</div>}
+      <Dragon />
+      <div
+        onKeyDown={handleBullets}
+        className="absolute"
+        style={{
+          left: `${bullets.x * speedX + 20}px`,
+          top: `${bullets.y * speedY + 20}px`,
+        }}></div>
       {mapDimensions.map((x, i) => (
         <div className="flex" key={i}>
           {x.map((y, j) => (
