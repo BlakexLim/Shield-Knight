@@ -4,7 +4,7 @@ export function Title() {
   return (
     <div className="flex flex-col items-center md:pt-10 font-custom">
       <div className="flex justify-center text-center bg-red-900 rounded-3xl p-1 text-yellow-400 text-6xl/relaxed w-1/2 tracking-widest">
-        <h1 className="animate-pulse ease-out">Shield Knight</h1>
+        <h1 className="animate-pulse ease-out cursor-default">Shield Knight</h1>
       </div>
       <div className="flex flex-col items-center justify-center">
         <div className="pt-20 pb-4">
