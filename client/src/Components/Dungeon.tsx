@@ -33,6 +33,10 @@ export function Dungeon() {
       setError(error);
     }
   }
+  // function handleGameOver() {
+  //   setEnd(true);
+  //   setRunning(false);
+  // }
 
   if (error) {
     console.error('Fetch error:', error);
@@ -60,7 +64,14 @@ export function Dungeon() {
           </div>
         </div>
       </Modal>
-      {/* game end modal */}
+      <Modal onClose={() => setEnd(false)} isOpen={end}>
+        <div className="flex flex-col items-center">
+          <h1 className="lg:mt-5 w-3/5 h-1/5 text-center lg:text-5xl md:text-3xl sm:text-lg tracking-widest text-red-700 animate-pulse">
+            Game Over
+          </h1>
+        </div>
+      </Modal>
+      {/* victory modal */}
       <Modal onClose={() => setEnd(false)} isOpen={end}>
         <div className="flex flex-col items-center">
           <h1 className="lg:mt-5 w-3/5 h-1/5 text-center lg:text-5xl md:text-3xl sm:text-lg tracking-widest text-blue-700 animate-pulse">
@@ -81,7 +92,7 @@ export function Dungeon() {
         </div>
       </Modal>
       <Time time={time} onTime={setTime} running={running} />
-      <GameMap victory={handleVictory} />
+      <GameMap gameOn={start} victory={handleVictory} />
       <Pause />
       <Quit />
     </div>

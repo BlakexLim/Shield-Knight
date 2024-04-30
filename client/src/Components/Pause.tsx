@@ -23,9 +23,7 @@ export function Pause() {
             </button>
           </div>
           <div>
-            <button>
-              <Quit />
-            </button>
+            <Quit />
           </div>
         </Modal>
       </div>
