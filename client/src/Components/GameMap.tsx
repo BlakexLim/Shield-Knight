@@ -3,10 +3,12 @@ import { Hero } from '../assets/Hero';
 import { path } from '../assets/path';
 import { mountain } from '../assets/mountain';
 import { Dragon } from './Dragon';
-// import { Bullets } from './Bullets';
+import { Bullets } from './Bullets';
 
 type GameProps = {
   victory: () => void;
+  gameOver: () => void;
+  gameOn: boolean;
 };
 
 const mapDimensions = [
@@ -23,29 +25,27 @@ const mapDimensions = [
   [1, 0, 1, 0, 0, 0, 0, 0, 1],
 ];
 
-export function GameMap({ victory }: GameProps) {
+export function GameMap({ victory, gameOn, gameOver }: GameProps) {
   const [position, setPosition] = useState({ x: 4, y: 10 });
-  const [bullets, setBullets] = useState({ x: 4, y: 1 });
 
   // move one cell per movement button click
-  const speedX = 70;
-  const speedY = 65.33;
+  const cellW = 70;
+  const cellH = 65.33;
+  const mapHeight = mapDimensions.length;
+  const mapWidth = mapDimensions[0].length;
 
-  const handleBullets = useCallback(() => {
-    setBullets(bullets);
-  }, [bullets]);
-
+  // check for obstruction
   const checkOk = useCallback((x: number, y: number) => {
     if (mapDimensions[y][x] === 1) return false;
     else return true;
   }, []);
 
+  // hero movement
   const handleKeyPress = useCallback(
     (e) => {
       e.preventDefault();
       let newX = position.x;
       let newY = position.y;
-      handleBullets();
 
       switch (e.keyCode) {
         // keyCodes for w a s d and arrow keys
@@ -61,7 +61,7 @@ export function GameMap({ victory }: GameProps) {
         case 83:
         case 40:
           if (
-            position.y < mapDimensions.length - 1 &&
+            position.y < mapHeight - 1 &&
             checkOk(position.x, position.y + 1)
           ) {
             newY = position.y + 1;
@@ -76,7 +76,7 @@ export function GameMap({ victory }: GameProps) {
         case 68:
         case 39:
           if (
-            position.x < mapDimensions[0].length - 1 &&
+            position.x < mapWidth - 1 &&
             checkOk(position.x + 1, position.y)
           ) {
             newX = position.x + 1;
@@ -87,7 +87,7 @@ export function GameMap({ victory }: GameProps) {
       }
       setPosition({ x: newX, y: newY });
     },
-    [position, checkOk, victory, handleBullets]
+    [position, checkOk, victory, mapWidth, mapHeight]
   );
 
   useEffect(() => {
@@ -106,13 +106,15 @@ export function GameMap({ victory }: GameProps) {
   return (
     <div className="flex flex-col relative">
       <Dragon />
-      <div
-        onKeyDown={handleBullets}
-        className="absolute"
-        style={{
-          left: `${bullets.x * speedX + 20}px`,
-          top: `${bullets.y * speedY + 20}px`,
-        }}></div>
+      <Bullets
+        isFiring={gameOn}
+        cellW={cellW}
+        cellH={cellH}
+        mapH={mapHeight}
+        mapW={mapWidth}
+        heroPosition={position}
+        onCollision={gameOver}
+      />
       {mapDimensions.map((x, i) => (
         <div className="flex" key={i}>
           {x.map((y, j) => (
@@ -125,8 +127,8 @@ export function GameMap({ victory }: GameProps) {
         <div
           className="absolute"
           style={{
-            left: `${position.x * speedX + 20}px`,
-            top: `${position.y * speedY + 20}px`,
+            left: `${position.x * cellW + 20}px`,
+            top: `${position.y * cellH + 20}px`,
           }}>
           <Hero />
         </div>
