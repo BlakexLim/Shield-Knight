@@ -56,7 +56,7 @@ export function Bullets({ isFiring, speedX, speedY, mapH, mapW }: BulletProp) {
   }, [bullets, mapH, mapW]);
 
   useEffect(() => {
-    const newInt = setInterval(moveBullets, 1000);
+    const newInt = setInterval(moveBullets, 200);
     return () => clearInterval(newInt);
   }, [moveBullets]);
 
