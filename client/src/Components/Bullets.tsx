@@ -47,16 +47,9 @@ export function Bullets({
     return <div>{projectiles}</div>;
   }, [bullets, cellH, cellW]);
 
-  // const collision = useCallback(() => {
-  //   if (heroPosition === bullets) {
-  //     console.log('collision detected!');
-  //     onCollision();
-  //   }
-  // }, [bullets, heroPosition, onCollision]);
-
+  // moves bullets across the map as well as check for collision
   const moveBullets = useCallback(() => {
     function collisionDetection() {
-      console.log('detect', bullets, heroPosition);
       for (let i = 0; i < bullets.length; i++) {
         if (
           heroPosition.x === bullets[i].x &&
@@ -83,8 +76,9 @@ export function Bullets({
       return true;
     });
     setBullets(filterBullets);
-  }, [bullets, mapH, mapW, isFiring, heroPosition]);
+  }, [bullets, mapH, mapW, isFiring, heroPosition, onCollision]);
 
+  // adds bullets to the bullets array
   const addBullet = useCallback(() => {
     if (isFiring === false) return;
     const templateProjectile = projectiles[Math.floor(Math.random() * 3)];
@@ -92,12 +86,12 @@ export function Bullets({
   }, [isFiring]);
 
   useEffect(() => {
-    const newInt = setInterval(moveBullets, 200);
+    const newInt = setInterval(moveBullets, 100);
     return () => clearInterval(newInt);
   }, [moveBullets]);
 
   useEffect(() => {
-    const newInt = setInterval(addBullet, 500);
+    const newInt = setInterval(addBullet, 300);
     return () => clearInterval(newInt);
   }, [addBullet]);
   return <div> {renderBullet()} </div>;

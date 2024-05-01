@@ -34,11 +34,13 @@ export function GameMap({ victory, gameOn, gameOver }: GameProps) {
   const mapHeight = mapDimensions.length;
   const mapWidth = mapDimensions[0].length;
 
+  // check for obstruction
   const checkOk = useCallback((x: number, y: number) => {
     if (mapDimensions[y][x] === 1) return false;
     else return true;
   }, []);
 
+  // hero movement
   const handleKeyPress = useCallback(
     (e) => {
       e.preventDefault();
