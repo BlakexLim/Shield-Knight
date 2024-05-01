@@ -7,6 +7,7 @@ import { Bullets } from './Bullets';
 
 type GameProps = {
   victory: () => void;
+  gameOver: () => void;
   gameOn: boolean;
 };
 
@@ -24,11 +25,12 @@ const mapDimensions = [
   [1, 0, 1, 0, 0, 0, 0, 0, 1],
 ];
 
-export function GameMap({ victory, gameOn }: GameProps) {
+export function GameMap({ victory, gameOn, gameOver }: GameProps) {
   const [position, setPosition] = useState({ x: 4, y: 10 });
+
   // move one cell per movement button click
-  const speedX = 70;
-  const speedY = 65.33;
+  const cellW = 70;
+  const cellH = 65.33;
   const mapHeight = mapDimensions.length;
   const mapWidth = mapDimensions[0].length;
 
@@ -104,10 +106,12 @@ export function GameMap({ victory, gameOn }: GameProps) {
       <Dragon />
       <Bullets
         isFiring={gameOn}
-        speedX={speedX}
-        speedY={speedY}
+        cellW={cellW}
+        cellH={cellH}
         mapH={mapHeight}
         mapW={mapWidth}
+        heroPosition={position}
+        onCollision={gameOver}
       />
       {mapDimensions.map((x, i) => (
         <div className="flex" key={i}>
@@ -121,8 +125,8 @@ export function GameMap({ victory, gameOn }: GameProps) {
         <div
           className="absolute"
           style={{
-            left: `${position.x * speedX + 20}px`,
-            top: `${position.y * speedY + 20}px`,
+            left: `${position.x * cellW + 20}px`,
+            top: `${position.y * cellH + 20}px`,
           }}>
           <Hero />
         </div>

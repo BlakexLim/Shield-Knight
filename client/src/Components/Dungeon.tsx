@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { GameMap } from './GameMap';
 import { Pause } from './Pause';
 import { Quit } from './Quit';
@@ -13,6 +13,7 @@ export function Dungeon() {
   const [end, setEnd] = useState(false);
   const [time, setTime] = useState(0);
   const [progress, setProgress] = useState<Progress>();
+  const [isVictory, setIsVictory] = useState(false);
 
   const [error, setError] = useState<unknown>();
 
@@ -23,8 +24,9 @@ export function Dungeon() {
     }
   }
 
-  async function handleVictory() {
+  const handleVictory = useCallback(async () => {
     try {
+      setIsVictory(true);
       setEnd(true);
       setRunning(false);
       const res = await updateProgress(time);
@@ -32,11 +34,13 @@ export function Dungeon() {
     } catch (error) {
       setError(error);
     }
-  }
-  // function handleGameOver() {
-  //   setEnd(true);
-  //   setRunning(false);
-  // }
+  }, [time]);
+
+  const handleDefeat = useCallback(() => {
+    setEnd(true);
+    setRunning(false);
+    setIsVictory(false);
+  }, []);
 
   if (error) {
     console.error('Fetch error:', error);
@@ -65,18 +69,18 @@ export function Dungeon() {
         </div>
       </Modal>
       {/* game over modal */}
-      {/* <Modal onClose={() => setEnd(false)} isOpen={end}>
+      <Modal onClose={() => setEnd(false)} isOpen={end && !isVictory}>
         <div className="flex flex-col items-center">
           <h1 className="lg:mt-5 w-3/5 h-1/5 text-center lg:text-5xl md:text-3xl sm:text-lg tracking-widest text-red-700 animate-pulse">
             Game Over
           </h1>
           <button className="pt-1 lg:mt-12 w-1/5 rounded-2xl bg-slate-700 text-white tracking-wider">
-            <Link to={"/newgame"}>OK</Link>
+            <Link to={'/newgame'}>OK</Link>
           </button>
         </div>
-      </Modal> */}
+      </Modal>
       {/* victory modal */}
-      <Modal onClose={() => setEnd(false)} isOpen={end}>
+      <Modal onClose={() => setEnd(false)} isOpen={end && isVictory}>
         <div className="flex flex-col items-center">
           <h1 className="lg:mt-5 w-3/5 h-1/5 text-center lg:text-5xl md:text-3xl sm:text-lg tracking-widest text-blue-700 animate-pulse">
             VICTORY
@@ -97,7 +101,11 @@ export function Dungeon() {
         </div>
       </Modal>
       <Time time={time} onTime={setTime} running={running} />
-      <GameMap gameOn={start} victory={handleVictory} />
+      <GameMap
+        gameOver={handleDefeat}
+        gameOn={running}
+        victory={handleVictory}
+      />
       <Pause />
       <Quit />
     </div>
