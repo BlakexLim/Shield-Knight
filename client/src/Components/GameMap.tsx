@@ -88,7 +88,7 @@ export function GameMap({ victory, gameOn, gameOver }: GameProps) {
       }
       setPosition({ x: newX, y: newY });
     },
-    [position, checkOk, victory, mapWidth, mapHeight]
+    [position, checkOk, victory, mapWidth, mapHeight, gameOn]
   );
 
   useEffect(() => {
