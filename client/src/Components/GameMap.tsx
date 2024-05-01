@@ -46,6 +46,7 @@ export function GameMap({ victory, gameOn, gameOver }: GameProps) {
       e.preventDefault();
       let newX = position.x;
       let newY = position.y;
+      if (!gameOn) return;
 
       switch (e.keyCode) {
         // keyCodes for w a s d and arrow keys

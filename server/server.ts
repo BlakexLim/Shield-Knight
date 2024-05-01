@@ -16,19 +16,12 @@ type Auth = {
   password: string;
 };
 
-// when user
 type UserProgress = {
   progressionId: number;
   bestTime: number;
   helmetsId?: number;
   shieldsId?: number;
   level?: number;
-};
-
-type ServerRes = {
-  bestTime: number;
-  prevBest: number;
-  isBestTime: boolean;
 };
 
 const connectionString =
