@@ -14,19 +14,20 @@ type GameProps = {
 const mapDimensions = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 0, 0, 1, 0, 0, 0, 1],
+  [1, 1, 0, 0, 1, 0, 0, 0, 1],
   [0, 0, 0, 1, 0, 0, 1, 0, 0],
   [0, 0, 0, 0, 1, 0, 0, 0, 0],
-  [1, 0, 1, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 1, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [1, 0, 1, 0, 0, 1, 1, 0, 1],
+  [0, 0, 0, 0, 1, 0, 0, 0, 0],
+  [0, 1, 0, 0, 0, 0, 0, 1, 0],
   [0, 0, 1, 1, 0, 1, 0, 0, 0],
-  [0, 1, 0, 0, 0, 0, 1, 0, 0],
-  [1, 0, 1, 0, 0, 0, 0, 0, 1],
+  [0, 0, 1, 0, 0, 0, 1, 0, 0],
+  [1, 0, 0, 0, 0, 0, 0, 0, 1],
+  [0, 1, 0, 0, 0, 1, 0, 1, 0],
 ];
 
 export function GameMap({ victory, gameOn, gameOver }: GameProps) {
-  const [position, setPosition] = useState({ x: 4, y: 10 });
+  const [position, setPosition] = useState({ x: 4, y: 11 });
 
   // move one cell per movement button click
   const cellW = 70;
