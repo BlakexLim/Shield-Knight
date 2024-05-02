@@ -91,7 +91,7 @@ export function Bullets({
   }, [moveBullets]);
 
   useEffect(() => {
-    const newInt = setInterval(addBullet, 300);
+    const newInt = setInterval(addBullet, 200);
     return () => clearInterval(newInt);
   }, [addBullet]);
   return <div> {renderBullet()} </div>;
