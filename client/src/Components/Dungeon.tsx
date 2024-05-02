@@ -5,7 +5,8 @@ import { Quit } from './Quit';
 import { Time } from './Time';
 import { Modal } from './Modal';
 import { Link } from 'react-router-dom';
-import { Progress, updateProgress } from '../lib/data';
+import { Progress, readGuest, saveGuest, updateProgress } from '../lib/data';
+import { useUser } from './useUser';
 
 export function Dungeon() {
   const [running, setRunning] = useState(false);
@@ -14,8 +15,17 @@ export function Dungeon() {
   const [time, setTime] = useState(0);
   const [progress, setProgress] = useState<Progress>();
   const [isVictory, setIsVictory] = useState(false);
-
+  const { user } = useUser();
+  const [guestData, setGuestData] = useState(readGuest());
   const [error, setError] = useState<unknown>();
+
+  const handleGuestData = useCallback(() => {
+    saveGuest(guestData);
+    setGuestData(guestData);
+    setIsVictory(true);
+    setEnd(true);
+    setRunning(false);
+  }, [guestData]);
 
   function handleReady(): void {
     if (start === true) {
@@ -104,7 +114,7 @@ export function Dungeon() {
       <GameMap
         gameOver={handleDefeat}
         gameOn={running}
-        victory={handleVictory}
+        victory={!user ? handleGuestData : handleVictory}
       />
       <Pause />
       <Quit />

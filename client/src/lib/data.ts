@@ -1,10 +1,16 @@
 export const tokenKey = 'um.token';
+export const guestKey = 'sk.key';
 
 export type Progress = {
   progressionId: number;
   bestTime: number;
   prevBest: number;
   isBestTime: boolean;
+};
+
+export type GuestProp = {
+  prevTime: number;
+  bestTime: number;
 };
 
 export function saveToken(token: string | undefined): void {
@@ -19,6 +25,16 @@ export function readToken(): string {
   const token = sessionStorage.getItem(tokenKey);
   if (!token) throw new Error('No token found');
   return token;
+}
+
+export function saveGuest(guestInfo): GuestProp | void {
+  localStorage.setItem(guestKey, JSON.stringify(guestInfo));
+}
+
+export function readGuest(): GuestProp | undefined {
+  const token = localStorage.getItem(guestKey);
+  if (!token) return undefined;
+  return JSON.parse(token);
 }
 
 export async function readProgress(): Promise<Progress> {

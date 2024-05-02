@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Guest } from './Guest';
 
 export function Title() {
   return (
@@ -23,12 +22,11 @@ export function Title() {
           </Link>
         </div>
         <div className="p-4">
-          <div className="flex justify-center items-center text-2xl bg-yellow-300 hover:bg-yellow-500 rounded-3xl h-14 w-80">
-            <Link to={'/controls'}>
-              <Guest />
+          <Link to="/controls">
+            <button className="text-2xl bg-yellow-300 hover:bg-yellow-500 rounded-3xl h-14 w-80">
               Guest
-            </Link>
-          </div>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
