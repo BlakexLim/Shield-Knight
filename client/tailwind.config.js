@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        cutom: ['AncientModernTales', 'sans-serif'],
+        custom: ['AncientModernTales', 'sans-serif'],
       },
       backgroundImage: {
-        dungeon: "url('public/bg.shieldKnight.webp')",
+        dungeon: "url('/public/bg.shieldKnight.webp')",
       },
     },
   },
