@@ -7,7 +7,7 @@ export default {
         custom: ['AncientModernTales', 'sans-serif'],
       },
       backgroundImage: {
-        dungeon: "url('/public/bg.shieldKnight.webp')",
+        dungeon: ["url('/public/bg.shieldKnight.webp')"],
       },
     },
   },
