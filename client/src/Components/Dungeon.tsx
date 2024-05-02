@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import { GameMap } from './GameMap';
-import { Pause } from './Pause';
 import { Quit } from './Quit';
 import { Time } from './Time';
 import { Modal } from './Modal';
@@ -116,7 +115,6 @@ export function Dungeon() {
         gameOn={running}
         victory={!user ? handleGuestData : handleVictory}
       />
-      <Pause />
       <Quit />
     </div>
   );
