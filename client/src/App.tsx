@@ -1,4 +1,3 @@
-// import { LandingPage } from './Pages/LandingPage';
 import './index.css';
 import { NewGame } from './Pages/NewGame';
 import { Controls } from './Pages/Controls';
@@ -15,24 +14,6 @@ import { saveToken } from './lib/data';
 export default function App() {
   const [user, setUser] = useState<User>();
   const [token, setToken] = useState<string>();
-  // const [guestData, setGuestData] = useState(null);
-
-  // useEffect(() => {
-  //   const isGuest = true;
-  //   if (isGuest) {
-  //     const storedGuestData = localStorage.getItem('guestData');
-  //     if (storedGuestData) {
-  //       setGuestData(JSON.parse(storedGuestData));
-  //     } else {
-  //       localStorage.setItem('guestData', JSON.stringify(guestData));
-  //     }
-  //   }
-  // }, [guestData]);
-
-  // const updateGuestData = (newData) => {
-  //   setGuestData(newData);
-  //   localStorage.setItem('guestData', JSON.stringify(newData));
-  // }
 
   function handleSignIn(user: User, token: string) {
     setUser(user);

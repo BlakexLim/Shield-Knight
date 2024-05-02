@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../Components/useUser';
 import { type FormEvent, useState } from 'react';
+import { Guest } from './Guest';
 
 export function Login() {
   const { handleSignIn } = useUser();
@@ -72,11 +73,12 @@ export function Login() {
           </button>
         </div>
         <div className="pt-11">
-          <Link to="/controls">
-            <button className="bg-yellow-300 hover:bg-yellow-500 rounded-3xl w-36 drop-shadow-2xl">
-              Continue as guest
-            </button>
-          </Link>
+          <div className="flex justify-center bg-yellow-300 hover:bg-yellow-500 rounded-3xl w-36 drop-shadow-2xl">
+            <Link to={'/controls'}>
+              <Guest />
+              Continue as Guest
+            </Link>
+          </div>
         </div>
       </form>
     </div>
