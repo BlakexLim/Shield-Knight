@@ -20,7 +20,7 @@ export function SignUp() {
         throw new Error(`fetch Error ${res.status}`);
       }
       const user = await res.json();
-      alert(`Successfully registered ${user.username}.`);
+      alert(`Successfully registered as ${user.username}.`);
       navigate('/login');
     } catch (err) {
       alert('Error registering user');
