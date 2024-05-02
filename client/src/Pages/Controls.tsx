@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useUser } from '../Components/useUser';
+import { saveGuest } from '../lib/data';
 
 export function Controls() {
+  const { user } = useUser();
+  if (!user) {
+    saveGuest({ guestTime: 0 });
+  }
   return (
     <div className="flex flex-col justify-center h-screen ">
       <div className="flex columns-2 justify-evenly h-80">

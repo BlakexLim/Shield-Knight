@@ -17,16 +17,17 @@ const mapDimensions = [
   [1, 1, 0, 0, 1, 0, 0, 0, 1],
   [0, 0, 0, 1, 0, 0, 1, 0, 0],
   [0, 0, 0, 0, 1, 0, 0, 0, 0],
-  [1, 0, 1, 0, 0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 1, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [1, 0, 1, 0, 0, 1, 1, 0, 1],
+  [0, 0, 0, 0, 1, 0, 0, 0, 0],
+  [0, 1, 0, 0, 0, 0, 0, 1, 0],
   [0, 0, 1, 1, 0, 1, 0, 0, 0],
-  [0, 1, 0, 0, 0, 0, 1, 0, 0],
-  [1, 0, 1, 0, 0, 0, 0, 0, 1],
+  [0, 0, 1, 0, 0, 0, 1, 0, 0],
+  [1, 0, 0, 0, 0, 0, 0, 0, 1],
+  [0, 1, 0, 0, 0, 1, 0, 1, 0],
 ];
 
 export function GameMap({ victory, gameOn, gameOver }: GameProps) {
-  const [position, setPosition] = useState({ x: 4, y: 10 });
+  const [position, setPosition] = useState({ x: 4, y: 11 });
 
   // move one cell per movement button click
   const cellW = 70;
@@ -46,6 +47,7 @@ export function GameMap({ victory, gameOn, gameOver }: GameProps) {
       e.preventDefault();
       let newX = position.x;
       let newY = position.y;
+      if (!gameOn) return;
 
       switch (e.keyCode) {
         // keyCodes for w a s d and arrow keys
@@ -87,7 +89,7 @@ export function GameMap({ victory, gameOn, gameOver }: GameProps) {
       }
       setPosition({ x: newX, y: newY });
     },
-    [position, checkOk, victory, mapWidth, mapHeight]
+    [position, checkOk, victory, mapWidth, mapHeight, gameOn]
   );
 
   useEffect(() => {

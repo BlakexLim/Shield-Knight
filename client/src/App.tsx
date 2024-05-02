@@ -1,4 +1,3 @@
-// import { LandingPage } from './Pages/LandingPage';
 import './index.css';
 import { NewGame } from './Pages/NewGame';
 import { Controls } from './Pages/Controls';

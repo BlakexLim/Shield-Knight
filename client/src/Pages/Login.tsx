@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../Components/useUser';
 import { type FormEvent, useState } from 'react';
 
@@ -72,11 +72,9 @@ export function Login() {
           </button>
         </div>
         <div className="pt-11">
-          <Link to="/controls">
-            <button className="bg-yellow-300 hover:bg-yellow-500 rounded-3xl w-36 drop-shadow-2xl">
-              Continue as guest
-            </button>
-          </Link>
+          <button className="bg-yellow-300 hover:bg-yellow-500 rounded-3xl w-36 drop-shadow-2xl">
+            Continue as guest
+          </button>
         </div>
       </form>
     </div>

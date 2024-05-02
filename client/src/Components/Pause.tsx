@@ -2,6 +2,7 @@ import { Modal } from './Modal';
 import { useState } from 'react';
 import { Quit } from './Quit';
 
+// for future
 export function Pause() {
   const [open, setOpen] = useState(false);
 
