@@ -9,8 +9,7 @@ export type Progress = {
 };
 
 export type GuestProp = {
-  prevTime: number;
-  bestTime: number;
+  guestTime: number;
 };
 
 export function saveToken(token: string | undefined): void {

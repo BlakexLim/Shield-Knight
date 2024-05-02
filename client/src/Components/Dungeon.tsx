@@ -20,12 +20,12 @@ export function Dungeon() {
   const [error, setError] = useState<unknown>();
 
   const handleGuestData = useCallback(() => {
-    saveGuest(guestData);
+    saveGuest({ guestTime: time });
     setGuestData(guestData);
     setIsVictory(true);
     setEnd(true);
     setRunning(false);
-  }, [guestData]);
+  }, [guestData, time]);
 
   function handleReady(): void {
     if (start === true) {

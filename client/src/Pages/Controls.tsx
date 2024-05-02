@@ -5,7 +5,7 @@ import { saveGuest } from '../lib/data';
 export function Controls() {
   const { user } = useUser();
   if (!user) {
-    saveGuest({ prevTime: 0, bestTime: Infinity });
+    saveGuest({ guestTime: 0 });
   }
   return (
     <div className="flex flex-col justify-center h-screen ">
