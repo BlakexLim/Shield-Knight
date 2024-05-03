@@ -1,8 +1,5 @@
 # full-stack-project
 
-A full stack solo project built using the PERN stack (PostgreSQL, Express, React, Node).
-Shield Knight is a simple web browser video game with one goal, _reach the dragon_.
-
 ## Getting Started
 
 ---
