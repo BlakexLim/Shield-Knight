@@ -2,6 +2,9 @@
 
 A simple web browser game utilizing the PERN stack.
 
+Goal of the game is to reach the dragon as quickly as possible.
+There are obstacles such as mountains and fireballs you must overcome.
+
 ## Getting Started
 
 ---
