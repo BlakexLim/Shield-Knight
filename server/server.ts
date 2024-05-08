@@ -69,15 +69,28 @@ app.post('/api/sign-up', async (req, res, next) => {
     if (!username || !password) {
       throw new ClientError(400, 'username and password are required fields');
     }
+    const checkExist = `
+      select "username"
+      from "users"
+      where "username" = $1;
+      `;
     const sql = `
       insert into "users" ("username", "hashedPwd")
         values ($1, $2)
         returning *;
         `;
     const params = [username, await argon2.hash(password)];
-    const result = await db.query(sql, params);
+    const result = await db.query<Auth>(sql, params);
     const [user] = result.rows;
-    if (!user) throw new ClientError(404, `${username} not found`);
+    // if (user) {
+    //   await db.query(checkExist, [username]);
+    //   throw new ClientError(400, `${username} already exists`);
+    // }
+    // if (!user) {
+    //   const params = [username, await argon2.hash(password)];
+    //   await db.query(sql, params);
+    //   res.status(201).json(user);
+    // }
     res.status(201).json(user);
   } catch (err) {
     next(err);
