@@ -5,15 +5,13 @@ A simple web browser game utilizing the PERN stack.
 Goal of the game is to reach the dragon as quickly as possible.
 There are obstacles such as mountains and fireballs you must overcome.
 
-## Getting Started
-
 ---
 
 ## Demo
-
+ - Live AWS Link: http://shield-knight-dev.us-west-1.elasticbeanstalk.com/
 ---
 
- - Live AWS Link: http://shield-knight-dev.us-west-1.elasticbeanstalk.com/
+## Developing on this project
 
 ### Clone into your code editor container volume
 
@@ -22,7 +20,6 @@ There are obstacles such as mountains and fireballs you must overcome.
    1. Select `Clone Repository in Container Volume...`
    1. Paste **HTTPS**/**SSH** URL, click `Clone git repository from URL`
 
----
 
 ### Run and test project setup
 
